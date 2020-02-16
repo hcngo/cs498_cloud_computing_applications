@@ -15,6 +15,7 @@ def post():
     data = request.get_json(True, False, False)
     if "num" in data:
         SEED = data["num"]
+    return ''
   
 if __name__ == '__main__':
   app.run()
