@@ -9,7 +9,7 @@ def default():
     global SEED
     res = ""
     if request.method == 'POST':
-        data = request.get_json(True)
+        data = request.get_json(True, False, False)
         if "num" in data:
             SEED = data["num"]
             res = f'Seed is set to {SEED}'
