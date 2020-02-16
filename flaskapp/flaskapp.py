@@ -9,7 +9,7 @@ def default():
     if request.method == 'POST':
         return request.data
     else:
-        return SEED
+        return "${SEED}"
   
 if __name__ == '__main__':
   app.run()
