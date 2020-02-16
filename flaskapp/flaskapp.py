@@ -7,15 +7,19 @@ SEED = 0
 @app.route('/', methods=['GET', 'POST'])
 def default():
     global SEED
+    res = ""
     if request.method == 'POST':
         data = request.get_json(True)
         if "num" in data:
             SEED = data["num"]
-            return f'Seed is set to {SEED}'
+            res = f'Seed is set to {SEED}'
         else:
-            return f'invalid request data'
+            res = f'invalid request data'
     else:
-        return f'{SEED}'
+        res = f'{SEED}'
+    response = app.make_response(res)
+    response.headers['Content-type'] = 'text/plain; charset=utf-8'
+    return response
   
 if __name__ == '__main__':
   app.run()
