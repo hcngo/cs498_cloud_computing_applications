@@ -7,6 +7,7 @@ SEED = 0
 
 @app.route('/', methods=['GET', 'POST'])
 def default():
+    global SEED
     if request.method == 'POST':
         data = request.get_json(True)
         if "num" in data:
