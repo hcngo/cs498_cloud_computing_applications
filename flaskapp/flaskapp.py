@@ -2,7 +2,6 @@ from flask import Flask
 from flask import request
 app = Flask(__name__)
 
-global SEED
 SEED = 0
 
 @app.route('/', methods=['GET', 'POST'])
