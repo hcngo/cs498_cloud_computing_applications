@@ -2,7 +2,7 @@ from flask import Flask
 from flask import request
 app = Flask(__name__)
 
-SEED = 0
+global SEED = 0
 
 @app.route('/', methods=['GET', 'POST'])
 def default():
