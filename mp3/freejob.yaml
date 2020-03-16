@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: free
+spec:
+  template:
+    spec:
+      containers:
+      - name: free
+        image: hieungo91/mp3-cloud-computing-applications:latest
+        env:
+        - name: DATASET
+          value: "mnist"
+        - name: TYPE
+          value: "ff"
+      restartPolicy: Never
+  backoffLimit: 4
