@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: premium
+  namespace: default
 spec:
   template:
     spec:
@@ -12,6 +13,6 @@ spec:
         - name: DATASET
           value: "kmnist"
         - name: TYPE
-          value: "premium"
+          value: "cnv"
       restartPolicy: Never
   backoffLimit: 4

@@ -2,12 +2,18 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: free
+  namespace: free-service
 spec:
   template:
     spec:
       containers:
       - name: free
         image: hieungo91/mp3-cloud-computing-applications:latest
+        resources:
+          limits:
+            cpu: "0.9"
+          requests:
+            cpu: "0.9"
         env:
         - name: DATASET
           value: "mnist"
