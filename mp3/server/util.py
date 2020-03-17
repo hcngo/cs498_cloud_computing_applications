@@ -1,8 +1,8 @@
-import time
+import uuid
 
 def create_free_job_object(client, dataset_name):
     # Configureate Pod template container
-    job_name = "free %s" % str(int(time.time()))
+    job_name = "free-%s" % str(uuid.uuid4())
     job_namespace = "free-service"
 
     resources = client.V1ResourceRequirements(
@@ -37,7 +37,7 @@ def create_free_job_object(client, dataset_name):
 
 def create_premium_job_object(client, dataset_name):
     # Configureate Pod template container
-    job_name = "premium %s" % str(int(time.time()))
+    job_name = "premium-%s" % str(uuid.uuid4())
     job_namespace = "default"
 
     container_env = [
