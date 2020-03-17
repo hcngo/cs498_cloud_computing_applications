@@ -1,6 +1,6 @@
 import uuid
 
-def create_free_job_object(client, dataset_name):
+def create_free_job(client, batch_client, dataset_name):
     # Configureate Pod template container
     job_name = "free-%s" % str(uuid.uuid4())
     job_namespace = "free-service"
@@ -33,9 +33,21 @@ def create_free_job_object(client, dataset_name):
         metadata=client.V1ObjectMeta(name=job_name, namespace=job_namespace),
         spec=spec)
 
-    return job
+    # Api call to create the job
+    api_response = batch_client.create_namespaced_job(
+        body=job,
+        namespace=job_namespace
+    )
 
-def create_premium_job_object(client, dataset_name):
+    # Need to read the info rightaway
+    job_status_info = batch_client.read_namespaced_job_status(
+        name=job_name,
+        namespace=job_namespace
+    )
+
+    return job_status_info
+
+def create_premium_job(client, batch_client, dataset_name):
     # Configureate Pod template container
     job_name = "premium-%s" % str(uuid.uuid4())
     job_namespace = "default"
@@ -63,4 +75,16 @@ def create_premium_job_object(client, dataset_name):
         metadata=client.V1ObjectMeta(name=job_name, namespace=job_namespace),
         spec=spec)
 
-    return job
+    # Api call to create the job
+    api_response = batch_client.create_namespaced_job(
+        body=job,
+        namespace=job_namespace
+    )
+
+    # Need to read the info rightaway
+    job_status_info = batch_client.read_namespaced_job_status(
+        name=job_name,
+        namespace=job_namespace
+    )
+
+    return job_status_info
