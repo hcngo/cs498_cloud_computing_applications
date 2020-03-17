@@ -88,3 +88,8 @@ def create_premium_job(client, batch_client, dataset_name):
     )
 
     return job_status_info
+
+def get_pods_info(core_client):
+    original_pod_list = core_client.list_pod_for_all_namespaces()
+    pod_list = [{"ip": p.status.pod_ip} for p in original_pod_list]
+    return pod_list
