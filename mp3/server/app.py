@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import request
+from flask import Flask, request, jsonify
 from kubernetes import client, config
 from util import create_free_job, create_premium_job, get_pods_info
 app = Flask(__name__)
@@ -31,7 +30,7 @@ def premium_job():
 @app.route('/config', methods=['GET'])
 def get_pods():
     pods_info = get_pods_info(core_v1)
-    return str(pods_info)
+    return jsonify(pods_info)
 
 if __name__ == '__main__':
   app.run()
