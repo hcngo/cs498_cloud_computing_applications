@@ -30,7 +30,7 @@ def premium_job():
 @app.route('/config', methods=['GET'])
 def get_pods():
     pods_info = get_pods_info(core_v1)
-    return jsonify(pods_info)
+    return jsonify({"pods": pods_info})
 
 if __name__ == '__main__':
   app.run()
