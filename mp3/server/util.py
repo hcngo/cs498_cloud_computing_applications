@@ -92,7 +92,9 @@ def create_premium_job(client, batch_client, dataset_name):
 def get_pods_info(core_client):
     original_pod_list = core_client.list_pod_for_all_namespaces()
     pod_list = [{
-        "node": p.spec,
+        "node": p.spec.to_dict(),
+        "metadata": p.metadata.to_dict(),
+        "status": p.status.to_dict(),
         "ip": p.status.pod_ip,
         "namespace": p.metadata.namespace,
         "name": p.metadata.name,
